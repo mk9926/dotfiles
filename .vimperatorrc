@@ -1,0 +1,5 @@
+
+set hintchars=asdfwerxcv
+map <esc><esc> :nohlsearch<cr>
+map <C-[> <esc>
+
