@@ -49,6 +49,8 @@ nnoremap [userkey]< :call TagSetGenerater()<cr>
 nnoremap [userkey]= :call Indenter()<cr>
 nnoremap [userkey]q :q!
 
+inoremap <c-l> <c-o>a
+
 function! Indenter()
     :mark n
     :norm ggvG=`n
