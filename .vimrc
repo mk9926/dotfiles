@@ -42,16 +42,11 @@ nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap [userkey]e :tab tabnew ~/.vimrc<cr>
 nnoremap [userkey]s :Sex<cr>
 nnoremap [userkey]<c-r> :source ~/.vimrc<cr>
-nnoremap [userkey]/ viwyq:pI/<esc><cr>
+nnoremap [userkey]/ yiwq:pI/<esc><cr>
 nnoremap [userkey]c :!
 nnoremap [userkey]t :tab tabnew<cr>
-nnoremap [userkey]< :call TagSetGenerater()<cr>
-nnoremap [userkey]= :call Indenter()<cr>
+nnoremap [userkey]= :norm mnggvG=`n<cr>
 nnoremap [userkey]q :q!
-
+nnoremap [userkey]d :vertical diffsplit #
 inoremap <c-l> <c-o>a
 
-function! Indenter()
-    :mark n
-    :norm ggvG=`n
-endfunction
