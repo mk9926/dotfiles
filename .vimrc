@@ -46,7 +46,6 @@ nnoremap [userkey]/ yiwq:pI/<esc><cr>
 nnoremap [userkey]c :!
 nnoremap [userkey]t :tab tabnew<cr>
 nnoremap [userkey]= :norm mnggvG=`n<cr>
-nnoremap [userkey]q :q!
 nnoremap [userkey]d :vertical diffsplit #
 inoremap <c-l> <c-o>a
 
