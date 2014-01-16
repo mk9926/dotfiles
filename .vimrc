@@ -1,6 +1,7 @@
 set autoindent
 set nu
 set encoding=utf-8
+set showmode
 set showmatch
 set expandtab
 set tabstop=4
@@ -45,7 +46,6 @@ nnoremap [userkey]<c-r> :source ~/.vimrc<cr>
 nnoremap [userkey]/ yiwq:pI/<esc><cr>
 nnoremap [userkey]c :!
 nnoremap [userkey]t :tab tabnew<cr>
-nnoremap [userkey]= :norm mnggvG=`n<cr>
+nnoremap [userkey]= mnggvG=`n
 nnoremap [userkey]d :vertical diffsplit #
 inoremap <c-l> <c-o>a
-
