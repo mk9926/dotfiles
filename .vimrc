@@ -36,8 +36,6 @@ filetype plugin indent on
 
 nnoremap [userkey] <nop>
 nmap <space> [userkey]
-nnoremap [test] <nop>
-nmap <s-t> [test]
 
 nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap [userkey]e :tab tabnew ~/.vimrc<cr>
