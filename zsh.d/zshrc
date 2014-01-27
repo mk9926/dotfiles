@@ -21,8 +21,11 @@ zstyle ':completion:*' list-colors '${LS_COLORS}'
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+
+#keybind
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+bindkey -a "q" push-line
 
 #alias
 alias lc="ls --color"
@@ -30,10 +33,11 @@ alias la="ls -a"
 alias llh="ls -lh"
 alias wmrc="vim ~/.config/openbox/rc.xml"
 alias wmres="openbox --reconfigure"
-alias shrc="vim ~/.zshrc"
+alias shrc="vim ~/dotfiles/zsh.d/zshrc"
 alias hist="history"
 alias mfe="vim ./Makefile"
 alias home="cd ~"
+alias -g V="2>&1 | vim - -R"
 
 #historys
 HISTSIZE=20000
