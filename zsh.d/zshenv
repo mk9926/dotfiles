@@ -1,0 +1,13 @@
+
+path=(
+#default
+/usr/local/sbin
+/usr/local/bin
+/usr/bin
+/usr/bin/core_perl
+#rubygems
+~/.gem/ruby/2.1.0/bin
+)
+
+typeset -U path
+
