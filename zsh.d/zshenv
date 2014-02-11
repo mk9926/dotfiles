@@ -8,12 +8,9 @@ path=(
 #forMac
 /opt/local/bin
 /opt/local/sbin
+#rubygems
+~/.gem/ruby/2.1.0/bin
 )
 
 typeset -U path
 
-manpath=(
-#rubygems
-~/.gem/ruby/2.1.0/bin
-)
-typeset -U manpath
