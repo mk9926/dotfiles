@@ -5,6 +5,9 @@ path=(
 /usr/local/bin
 /usr/bin
 /usr/bin/core_perl
+#forMac
+/opt/local/bin
+/opt/local/sbin
 )
 
 typeset -U path
