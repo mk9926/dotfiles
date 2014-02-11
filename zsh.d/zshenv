@@ -8,6 +8,8 @@ path=(
 #forMac
 /opt/local/bin
 /opt/local/sbin
+/bin
+/sbin
 #rubygems
 ~/.gem/ruby/2.1.0/bin
 )
