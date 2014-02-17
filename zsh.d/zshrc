@@ -8,6 +8,7 @@ setopt auto_cd
 setopt correct
 setopt auto_pushd
 setopt cdable_vars
+setopt extended_glob
 
 export CLICOLOR=true
 autoload -U colors
@@ -37,6 +38,7 @@ alias shrc="vim ~/dotfiles/zsh.d/zshrc"
 alias hist="history"
 alias mfe="vim ./Makefile"
 alias home="cd ~"
+alias memo="vim ~/helloworld/commandmemo"
 alias -g V="2>&1 | vim - -R"
 
 #historys
