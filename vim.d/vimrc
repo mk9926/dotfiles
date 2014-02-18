@@ -45,3 +45,5 @@ nnoremap [userkey]c :!
 nnoremap [userkey]t :tab tabnew<cr>
 nnoremap [userkey]d :vertical diffsplit #
 inoremap <c-l> <c-o>a
+
+autocmd FileType cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
