@@ -9,10 +9,12 @@ endif
 
 std
 boost
-boost::spirit
-boost::spirit::qi
-boost::spirit::karma
-boost::phoenix
+spirit
+qi
+karma
+phoenix
+placeholders
+ascii
 
 
 iostream
@@ -236,8 +238,8 @@ inline
 extern
 
 
-parser
-phrase_parser
+parse
+phrase_parse
 ch
 lit
 char_

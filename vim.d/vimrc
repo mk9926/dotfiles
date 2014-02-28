@@ -28,6 +28,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'surround.vim'
 NeoBundle 'rbtnn/puyo.vim'
 
+NeoBundle'Shougo/vimproc', {
+            \'build' : {
+            \'windows' : 'echo "Sorry, cannot update vimproc binary in windows"',
+            \'cygwin' : 'make -f make_cygwin.mak',
+            \'mac' : 'make -f make_mac.mak',
+            \'unix' : 'make -f make_unix.mak',
+            \},
+            \}
+
 NeoBundleCheck
 filetype plugin indent on
 
@@ -38,12 +47,12 @@ nnoremap [userkey] <nop>
 nmap <space> [userkey]
 
 nnoremap <esc><esc> :nohlsearch<cr>
-nnoremap [userkey]e :tab tabnew ~/dotfiles/vim.d/vimrc<cr>
-nnoremap [userkey]s :Sex<cr>
-nnoremap [userkey]<c-r> :source ~/dotfiles/vim.d/vimrc<cr>
-nnoremap [userkey]c :!
+nnoremap <f2> :tab tabnew ~/dotfiles/<cr>
+nnoremap <f3> :Sex<cr>
 nnoremap [userkey]t :tab tabnew<cr>
 nnoremap [userkey]d :vertical diffsplit #
 inoremap <c-l> <c-o>a
 
 autocmd FileType cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
+autocmd FileType lisp :set dict=~/dotfiles/vim.d/dict.d/commonlisp.dict
+
