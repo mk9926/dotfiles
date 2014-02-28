@@ -38,7 +38,7 @@ alias shrc="vim ~/dotfiles/zsh.d/zshrc"
 alias hist="history"
 alias mfe="vim ./Makefile"
 alias home="cd ~"
-alias memo="vim ~/helloworld/commandmemo"
+alias memo="vim ~/helloworld/memos"
 alias -g V="2>&1 | vim - -R"
 
 #historys
