@@ -34,14 +34,15 @@ eq
 eql
 equal
 let
+let*
 labels
 flet
 length
 with-open-file
-*standard-output*
+standard-output
 :direction
 :output
-:if-exist
+:if-exists
 :supersede
 ext:shell
 string-trim
@@ -60,6 +61,8 @@ setf
 write-to-string
 :pretty
 load
-
+remove-if
+remove-if-not
+set-difference
 
 
