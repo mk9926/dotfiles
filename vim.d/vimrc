@@ -11,6 +11,8 @@ set smartcase
 set incsearch
 set hlsearch
 set nocompatible
+set ruler
+set title
 
 syntax enable
 
@@ -26,9 +28,14 @@ endif
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'surround.vim'
+let g:surround_{char2nr('(')} = "\\(\r\\)"
+let g:surround_{char2nr('{')} = "\\{\r\\}"
+au FileType c,cpp :let g:surround_{char2nr('i')} = "#include<\r>"
+au FileType c,cpp :let g:surround_{char2nr('*')} = "/* \r */"
+
 NeoBundle 'rbtnn/puyo.vim'
 
-NeoBundle'Shougo/vimproc', {
+NeoBundle 'Shougo/vimproc', {
             \'build' : {
             \'windows' : 'echo "Sorry, cannot update vimproc binary in windows"',
             \'cygwin' : 'make -f make_cygwin.mak',
@@ -36,6 +43,17 @@ NeoBundle'Shougo/vimproc', {
             \'unix' : 'make -f make_unix.mak',
             \},
             \}
+
+NeoBundle 'Yggdroot/indentLine'
+let g:indentLine_color_term=239
+let g:indentLine_char='¦'
+
+NeoBundle 'Shougo/vimshell.vim'
+nnoremap <f4> :VimShell<cr>
+
+NeoBundle 'vim-jp/cpp-vim'
+
+NeoBundle 'vimplugin/project.vim'
 
 NeoBundleCheck
 filetype plugin indent on
@@ -47,12 +65,12 @@ nnoremap [userkey] <nop>
 nmap <space> [userkey]
 
 nnoremap <esc><esc> :nohlsearch<cr>
-nnoremap <f2> :tab tabnew ~/dotfiles/<cr>
-nnoremap <f3> :Sex<cr>
+nnoremap <f2> :Tex ~/dotfiles/<cr>
+nnoremap <f3> :Tex<cr>
 nnoremap [userkey]t :tab tabnew<cr>
 nnoremap [userkey]d :vertical diffsplit #
 inoremap <c-l> <c-o>a
 
-autocmd FileType cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
+autocmd FileType c,cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
 autocmd FileType lisp :set dict=~/dotfiles/vim.d/dict.d/commonlisp.dict
 

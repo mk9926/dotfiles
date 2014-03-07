@@ -27,6 +27,9 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey -a "q" push-line
+bindkey '\^' cdup
+bindkey '~' cdhome
+bindkey '\@' start_editor
 
 #alias
 alias lc="ls --color"
@@ -36,7 +39,6 @@ alias wmrc="vim ~/.config/openbox/rc.xml"
 alias wmres="openbox --reconfigure"
 alias shrc="vim ~/dotfiles/zsh.d/zshrc"
 alias hist="history"
-alias mfe="vim ./Makefile"
 alias home="cd ~"
 alias memo="vim ~/helloworld/memos"
 alias -g V="2>&1 | vim - -R"
@@ -46,3 +48,30 @@ HISTSIZE=20000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
+#functions
+
+##cd up
+function cdup() {
+    echo
+    cd ..
+    pwd
+    zle reset-prompt
+}
+zle -N cdup
+
+##cd home
+function cdhome() {
+    echo
+    cd ~
+    pwd
+    zle reset-prompt
+}
+zle -N cdhome
+
+##start editor on current dir
+function start_editor() {
+    exec < /dev/tty
+    ${EDITOR} ./
+    zle reset-prompt
+}
+zle -N start_editor

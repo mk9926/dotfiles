@@ -16,6 +16,10 @@ path=(
 
 typeset -U path
 
+vimruntime=(
+/usr/share/vim/vim74/
+)
+
 library_path=(
 /opt/local/lib
 )
