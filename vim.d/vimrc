@@ -13,6 +13,7 @@ set hlsearch
 set nocompatible
 set ruler
 set title
+set directory=~/tmp,/var/tmp,/tmp
 
 syntax enable
 
