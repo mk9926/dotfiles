@@ -30,8 +30,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'surround.vim'
 let g:surround_{char2nr('(')} = "\\(\r\\)"
 let g:surround_{char2nr('{')} = "\\{\r\\}"
+let g:surround_{char2nr('[')} = "\\[\r\\]"
 au FileType c,cpp :let g:surround_{char2nr('i')} = "#include<\r>"
+au FileType c,cpp :let g:surround_{char2nr('I')} = "#if \1condition\1\n\r\n#endif\n"
 au FileType c,cpp :let g:surround_{char2nr('*')} = "/* \r */"
+au FileType md :let g:surround_{char2nr('*')} = "<!--\r-->"
 
 NeoBundle 'rbtnn/puyo.vim'
 
@@ -46,14 +49,20 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'Yggdroot/indentLine'
 let g:indentLine_color_term=239
-let g:indentLine_char='¦'
+let g:indentLine_char='┊'
 
 NeoBundle 'Shougo/vimshell.vim'
-nnoremap <f4> :VimShell<cr>
+nnoremap [vsstart] <nop>
+nmap <f4> [vsstart]
+nnoremap [vsstart][vsstart] :VimShell<cr>
+nnoremap [vsstart]s <c-w>s:VimShell<cr>
+nnoremap [vsstart]t :tabe<cr>:VimShell<cr>
 
 NeoBundle 'vim-jp/cpp-vim'
 
 NeoBundle 'vimplugin/project.vim'
+
+NeoBundle 'Shougo/unite.vim'
 
 NeoBundleCheck
 filetype plugin indent on
@@ -66,11 +75,11 @@ nmap <space> [userkey]
 
 nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Tex ~/dotfiles/<cr>
-nnoremap <f3> :Tex<cr>
-nnoremap [userkey]t :tab tabnew<cr>
-nnoremap [userkey]d :vertical diffsplit #
+nnoremap <f3> :vertical diffsplit #
 inoremap <c-l> <c-o>a
+cnoremap <expr> s "s".nr2char(getchar())
+cnoremap <expr> s,, "source #"
 
-autocmd FileType c,cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
-autocmd FileType lisp :set dict=~/dotfiles/vim.d/dict.d/commonlisp.dict
+au FileType c,cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
+au FileType lisp :set dict=~/dotfiles/vim.d/dict.d/commonlisp.dict
 
