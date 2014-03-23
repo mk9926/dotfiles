@@ -8,6 +8,7 @@ setopt auto_cd
 setopt correct
 setopt auto_pushd
 setopt cdable_vars
+setopt extended_glob
 
 export CLICOLOR=true
 autoload -U colors
@@ -26,6 +27,10 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey -a "q" push-line
+bindkey '\^' cdup
+bindkey '' cdprev
+bindkey '' cdhome
+bindkey '\@' start_editor
 
 #alias
 alias lc="ls --color"
@@ -35,8 +40,6 @@ alias wmrc="vim ~/.config/openbox/rc.xml"
 alias wmres="openbox --reconfigure"
 alias shrc="vim ~/dotfiles/zsh.d/zshrc"
 alias hist="history"
-alias mfe="vim ./Makefile"
-alias home="cd ~"
 alias -g V="2>&1 | vim - -R"
 
 #historys
@@ -44,3 +47,39 @@ HISTSIZE=20000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
+#functions
+
+##cd up
+function cdup() {
+    echo
+    cd ..
+    pwd
+    zle reset-prompt
+}
+zle -N cdup
+
+##cd previous directory
+function cdprev() {
+    echo
+    cd -
+    #pwd
+    zle reset-prompt
+}
+zle -N cdprev
+
+##cd home
+function cdhome() {
+    echo
+    cd ~
+    pwd
+    zle reset-prompt
+}
+zle -N cdhome
+
+##start editor on current dir
+function start_editor() {
+    exec < /dev/tty
+    ${EDITOR}
+    zle reset-prompt
+}
+zle -N start_editor

@@ -11,3 +11,30 @@ path=(
 
 typeset -U path
 
+vimruntime=(
+/usr/share/vim/vim74/
+)
+
+library_path=(
+/opt/local/lib
+)
+
+ld_library_path=(
+/opt/local/lib
+)
+
+c_include_path=(
+/opt/local/include
+)
+
+cplus_include_path=(
+/opt/local/include
+)
+
+dyld_fallback_library_path=(
+/opt/local/lib
+)
+
+boost_root=(
+/opt/local/include/boost
+)
