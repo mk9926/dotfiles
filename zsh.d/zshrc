@@ -27,9 +27,7 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey -a "q" push-line
-bindkey '\^' cdup
-bindkey '' cdprev
-bindkey '' cdhome
+bindkey '' cdup
 bindkey '\@' start_editor
 
 #alias
@@ -57,24 +55,6 @@ function cdup() {
     zle reset-prompt
 }
 zle -N cdup
-
-##cd previous directory
-function cdprev() {
-    echo
-    cd -
-    #pwd
-    zle reset-prompt
-}
-zle -N cdprev
-
-##cd home
-function cdhome() {
-    echo
-    cd ~
-    pwd
-    zle reset-prompt
-}
-zle -N cdhome
 
 ##start editor on current dir
 function start_editor() {
