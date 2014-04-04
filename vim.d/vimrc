@@ -71,8 +71,8 @@ filetype plugin indent on
 
 nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Tex ~/dotfiles/<cr>
-inoremap <c-f> <c-o>a
-inoremap <c-b> <c-o>h
+inoremap <c-f> <right>
+inoremap <c-b> <left>
 cnoremap <expr> <f3> expand('%:h') . '/'
 
 au FileType c,cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
