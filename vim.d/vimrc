@@ -1,19 +1,22 @@
-set autoindent
-set nu
 set encoding=utf-8
-set showmode
-set showmatch
-set expandtab
-set tabstop=4
-set shiftwidth=4
+set expandtab tabstop=4 shiftwidth=4
+set history=200
+
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+
 set nocompatible
-set ruler
-set title
 set directory=~/tmp,/var/tmp,/tmp
+
+set autoindent
+set showmatch
+set nu
+set ruler
+set showmode
+set title
+set hidden
 
 syntax enable
 
@@ -71,15 +74,11 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""
 
-nnoremap [userkey] <nop>
-nmap <space> [userkey]
-
 nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Tex ~/dotfiles/<cr>
-nnoremap <f3> :vertical diffsplit #
-inoremap <c-l> <c-o>a
-cnoremap <expr> s "s".nr2char(getchar())
-cnoremap <expr> s,, "source #"
+inoremap <c-f> <c-o>a
+inoremap <c-b> <c-o>h
+cnoremap <expr> <f3> expand('%:h') . '/'
 
 au FileType c,cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
 au FileType lisp :set dict=~/dotfiles/vim.d/dict.d/commonlisp.dict
