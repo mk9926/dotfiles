@@ -56,11 +56,6 @@ let g:indentLine_color_term=239
 let g:indentLine_char='┊'
 
 NeoBundle 'Shougo/vimshell.vim'
-nnoremap [vsstart] <nop>
-nmap <f4> [vsstart]
-nnoremap [vsstart][vsstart] :VimShell<cr>
-nnoremap [vsstart]s <c-w>s:VimShell<cr>
-nnoremap [vsstart]t :tabe<cr>:VimShell<cr>
 
 NeoBundle 'vim-jp/cpp-vim'
 
