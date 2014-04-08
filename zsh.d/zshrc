@@ -34,9 +34,6 @@ bindkey '\@' start_editor
 alias lc="ls --color"
 alias la="ls -a"
 alias llh="ls -lh"
-alias wmrc="vim ~/.config/openbox/rc.xml"
-alias wmres="openbox --reconfigure"
-alias shrc="vim ~/dotfiles/zsh.d/zshrc"
 alias hist="history"
 alias -g V="2>&1 | vim - -R"
 

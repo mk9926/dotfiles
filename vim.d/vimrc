@@ -35,6 +35,8 @@ NeoBundle 'surround.vim'
 let g:surround_{char2nr('(')} = "\\(\r\\)"
 let g:surround_{char2nr('{')} = "\\{\r\\}"
 let g:surround_{char2nr('[')} = "\\[\r\\]"
+let g:surround_{char2nr('q')} = "\'\r\'"
+let g:surround_{char2nr('d')} = "\"\r\""
 au FileType c,cpp :let g:surround_{char2nr('i')} = "#include<\r>"
 au FileType c,cpp :let g:surround_{char2nr('I')} = "#if \1condition\1\n\r\n#endif\n"
 au FileType c,cpp :let g:surround_{char2nr('*')} = "/* \r */"
