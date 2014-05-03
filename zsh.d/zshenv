@@ -1,16 +1,16 @@
 
 path=(
-#default
-/usr/local/sbin
-/usr/local/bin
-/usr/bin
-/usr/bin/core_perl
 #forMac
 /opt/local/bin
 /opt/local/sbin
 /bin
 /sbin
 /Users/masa/bin
+#default
+/usr/local/sbin
+/usr/local/bin
+/usr/bin
+/usr/bin/core_perl
 #rubygems
 ~/.gem/ruby/2.1.0/bin
 )
@@ -41,6 +41,6 @@ dyld_fallback_library_path=(
 /opt/local/lib
 )
 
-boost_root=(
+boost_include_path=(
 /opt/local/include/boost
 )
