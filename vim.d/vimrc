@@ -26,21 +26,18 @@ syntax enable
 
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
+    call neobundle#begin(expand('~/.vim/bundle/'))
 endif
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'surround.vim'
 let g:surround_{char2nr('(')} = "\\(\r\\)"
-let g:surround_{char2nr('{')} = "\\{\r\\}"
-let g:surround_{char2nr('[')} = "\\[\r\\]"
+let g:surround_{char2nr('{')} = "\\{\r}"
+let g:surround_{char2nr('[')} = "\\[\r]"
 let g:surround_{char2nr('q')} = "\'\r\'"
 let g:surround_{char2nr('d')} = "\"\r\""
-au FileType c,cpp :let g:surround_{char2nr('i')} = "#include<\r>"
-au FileType c,cpp :let g:surround_{char2nr('I')} = "#if \1condition\1\n\r\n#endif\n"
 au FileType c,cpp :let g:surround_{char2nr('*')} = "/* \r */"
-au FileType md :let g:surround_{char2nr('*')} = "<!--\r-->"
 
 NeoBundle 'rbtnn/puyo.vim'
 
@@ -65,8 +62,10 @@ NeoBundle 'vimplugin/project.vim'
 
 NeoBundle 'Shougo/unite.vim'
 
-NeoBundleCheck
+call neobundle#end()
+
 filetype plugin indent on
+NeoBundleCheck
 
 """"""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""
@@ -75,6 +74,8 @@ nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Tex ~/dotfiles/<cr>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
+inoremap <c-a> <c-o>I
+inoremap <c-e> <c-o>A
 cnoremap <expr> <f3> expand('%:h') . '/'
 
 au FileType c,cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
