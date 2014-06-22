@@ -6,6 +6,7 @@ path=(
 /bin
 /sbin
 /Users/masa/bin
+/Users/masa/Library/Haskell/ghc-7.6.3/lib/ghc-mod-4.1.1/bin
 #default
 /usr/local/sbin
 /usr/local/bin

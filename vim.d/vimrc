@@ -33,8 +33,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'surround.vim'
 let g:surround_{char2nr('(')} = "\\(\r\\)"
-let g:surround_{char2nr('{')} = "\\{\r}"
-let g:surround_{char2nr('[')} = "\\[\r]"
+let g:surround_{char2nr('{')} = "\\{\r\\}"
+let g:surround_{char2nr('[')} = "\\[\r\\]"
 let g:surround_{char2nr('q')} = "\'\r\'"
 let g:surround_{char2nr('d')} = "\"\r\""
 au FileType c,cpp :let g:surround_{char2nr('*')} = "/* \r */"
@@ -64,6 +64,13 @@ NeoBundle 'Shougo/unite.vim'
 
 NeoBundle 'vim-scripts/haskell.vim'
 
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+nnoremap <f4> :SyntasticCheck<cr>
+
+NeoBundle 'tpope/vim-unimpaired'
+
 call neobundle#end()
 
 filetype plugin indent on
@@ -74,12 +81,11 @@ NeoBundleCheck
 
 nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Tex ~/dotfiles/<cr>
+nnoremap <f4> :Project ./.vimprojects<cr>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
 inoremap <c-a> <c-o>I
 inoremap <c-e> <c-o>A
 cnoremap <expr> <f3> expand('%:h') . '/'
 
-au FileType c,cpp :set dict=~/dotfiles/vim.d/dict.d/cpp.dict
-au FileType lisp :set dict=~/dotfiles/vim.d/dict.d/commonlisp.dict
 
