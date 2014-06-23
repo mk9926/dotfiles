@@ -88,4 +88,5 @@ inoremap <c-a> <c-o>I
 inoremap <c-e> <c-o>A
 cnoremap <expr> <f3> expand('%:h') . '/'
 
-
+autocmd FileType c,cpp :set dictionary=~/dotfiles/vim.d/dict.d/cpp.dict
+autocmd FileType c,cpp :nnoremap <f5> :split ~/dotfiles/vim.d/patterns/cpp_regex_pattern.txt<cr>

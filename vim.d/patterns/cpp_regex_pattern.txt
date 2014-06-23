@@ -1,0 +1,23 @@
+# assignment
+\v([^[:blank:]]+)%(\s*)\=%(\s*)([^[:blank:]]+);
+#   ex:
+#       hoge = fuga;
+#       hoge->f = fuga->f;
+
+
+# binary operation
+\v([^[:blank:]]+)%(\s*)\=%(\s*)([^[:blank:]]+)%(\s*)[\+\-\*\/]%(\s*)([^[:blank:]]+);
+#   ex:
+#       hoge = fuga + piyo;
+#
+
+
+# function
+\v([^[:blank:]]+)\((([^[:blank:]]+)(\,(\s)*([^[:blank:]]+))*)*\)
+#   ex:
+#       f(x,y)
+#       hoge(fua,hoge,     hoe)
+#
+
+
+
