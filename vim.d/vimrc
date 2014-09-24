@@ -37,7 +37,10 @@ let g:surround_{char2nr('{')} = "\\{\r\\}"
 let g:surround_{char2nr('[')} = "\\[\r\\]"
 let g:surround_{char2nr('q')} = "\'\r\'"
 let g:surround_{char2nr('d')} = "\"\r\""
-au FileType c,cpp :let g:surround_{char2nr('*')} = "/* \r */"
+let g:surround_{char2nr(':')} = ":\r:"
+au FileType tex     :let g:surround_{char2nr('s')} = "\$ \r \$"
+au FileType c,cpp   :let g:surround_{char2nr('*')} = "/* \r */"
+au FileType hs      :let g:surround_{char2nr('*')} = "{- \r -}"
 
 NeoBundle 'rbtnn/puyo.vim'
 
@@ -67,9 +70,27 @@ NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
-nnoremap <f4> :SyntasticCheck<cr>
 
 NeoBundle 'tpope/vim-unimpaired'
+
+NeoBundle 'thinca/vim-quickrun'
+let g:quickrun_config = {
+            \'_' : {
+            \   'outputter/buffer/split' : ':botright',
+            \   'runner' : 'vimproc',
+            \   'runner/vimproc/updatetime' : 60
+            \},
+            \'cpp/g++' : {
+            \   'cmdopt' : '-std=c++11 -I /opt/local/include/',
+            \}
+            \}
+
+NeoBundle 'jvoorhis/coq.vim'
+
+NeoBundle 'vim-jp/vital.vim'
+
+NeoBundle 'jcf/vim-latex'
+
 
 call neobundle#end()
 
@@ -84,9 +105,7 @@ nnoremap <f2> :Tex ~/dotfiles/<cr>
 nnoremap <f4> :Project ./.vimprojects<cr>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
-inoremap <c-a> <c-o>I
-inoremap <c-e> <c-o>A
-cnoremap <expr> <f3> expand('%:h') . '/'
+cnoremap <expr> <f3> expand('%:p:h') . '/'
 
 autocmd FileType c,cpp :set dictionary=~/dotfiles/vim.d/dict.d/cpp.dict
 autocmd FileType c,cpp :nnoremap <f5> :split ~/dotfiles/vim.d/patterns/cpp_regex_pattern.txt<cr>

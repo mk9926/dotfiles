@@ -3,4 +3,3 @@ set hintchars=asdfwerxcv
 set encoding=UTF-8
 map <f1> :set encoding=UTF-8<cr>
 map <esc><esc> :nohlsearch<cr>
-map <C-[> <esc>
