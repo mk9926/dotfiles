@@ -8,7 +8,7 @@ set incsearch
 set hlsearch
 
 set nocompatible
-set directory=~/tmp,/var/tmp,/tmp
+set directory=$HOME/tmp,/var/tmp,/tmp
 
 set autoindent
 set showmatch
@@ -101,10 +101,11 @@ NeoBundleCheck
 """"""""""""""""""""""""""""""
 
 nnoremap <esc><esc> :nohlsearch<cr>
-nnoremap <f2> :Sex ~/.vim/vim.d<cr>
+nnoremap <f2> :Sex $HOME/.vim/vim.d<cr>
 nnoremap <f4> :Project ./.vimprojects<cr>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
 cnoremap <expr> <f3> expand('%:p:h') . '/'
 
-au FileType c,cpp :set dictionary= ~/.vim/vim.d/tool/dict/cpp.dict
+au FileType c,cpp :set dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
+au FileType tex :set dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
