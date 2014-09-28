@@ -101,7 +101,7 @@ NeoBundleCheck
 """"""""""""""""""""""""""""""
 
 nnoremap <esc><esc> :nohlsearch<cr>
-nnoremap <f2> :Tex ~/.vim/vim.d<cr>
+nnoremap <f2> :Sex ~/.vim/vim.d<cr>
 nnoremap <f4> :Project ./.vimprojects<cr>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
