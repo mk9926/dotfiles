@@ -109,3 +109,4 @@ cnoremap <expr> <f3> expand('%:p:h') . '/'
 
 au FileType c,cpp :set dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
 au FileType tex :set dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
+au FileType tex :source $HOME/.vim/vim.d/runcommand/latex-suiterc.vim
