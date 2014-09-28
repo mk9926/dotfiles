@@ -101,11 +101,10 @@ NeoBundleCheck
 """"""""""""""""""""""""""""""
 
 nnoremap <esc><esc> :nohlsearch<cr>
-nnoremap <f2> :Tex ~/dotfiles/<cr>
+nnoremap <f2> :Tex ~/.vim/vim.d<cr>
 nnoremap <f4> :Project ./.vimprojects<cr>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
 cnoremap <expr> <f3> expand('%:p:h') . '/'
 
-autocmd FileType c,cpp :set dictionary=~/dotfiles/vim.d/dict.d/cpp.dict
-autocmd FileType c,cpp :nnoremap <f5> :split ~/dotfiles/vim.d/patterns/cpp_regex_pattern.txt<cr>
+au FileType c,cpp :set dictionary= ~/.vim/vim.d/tool/dict/cpp.dict
