@@ -22,7 +22,9 @@ newtxtext
 amsmath
 mathrsfs
 rsfso
-
+mathptmx
+eucal
+txfonts
 
 
 newcommand
