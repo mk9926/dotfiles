@@ -10,6 +10,7 @@ book
 jbook
 
 titlepage
+notitlepage
 
 
 preamble
@@ -18,6 +19,7 @@ pagestyle
 empty
 
 usepackage
+
 newtxtext
 amsmath
 mathrsfs
@@ -25,6 +27,20 @@ rsfso
 mathptmx
 eucal
 txfonts
+
+graphicx
+dvipdfmx
+includegraphics
+
+mymacros
+Note
+ZF
+ZFC
+AC
+
+mytitle
+mytitlef
+mytitlel
 
 
 newcommand
@@ -56,6 +72,11 @@ equation
 eqnarray
 array
 displaymath
+table
+multicolumn
+hline
+tabular
+
 
 
 verb
@@ -77,6 +98,8 @@ subsection
 subsubsection
 paragraph
 subparagraph
+
+newpage
 
 
 textgt
