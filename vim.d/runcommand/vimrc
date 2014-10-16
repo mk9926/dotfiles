@@ -41,6 +41,7 @@ let g:surround_{char2nr(':')} = ":\r:"
 au FileType tex     :let g:surround_{char2nr('s')} = "\$ \r \$"
 au FileType c,cpp   :let g:surround_{char2nr('*')} = "/* \r */"
 au FileType hs      :let g:surround_{char2nr('*')} = "{- \r -}"
+au FileType vim     :let g:surround_{char2nr('p')} = "%(\r)"
 
 NeoBundle 'rbtnn/puyo.vim'
 
