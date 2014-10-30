@@ -88,6 +88,8 @@ let g:quickrun_config = {
 
 NeoBundle 'jvoorhis/coq.vim'
 
+NeoBundle 'eagletmt/coqtop-vim'
+
 NeoBundle 'vim-jp/vital.vim'
 
 NeoBundle 'jcf/vim-latex'
@@ -104,6 +106,8 @@ NeoBundleCheck
 nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Sex $HOME/.vim/vim.d<cr>
 nnoremap <f4> :Project ./.vimprojects<cr>
+nnoremap <down> <c-e>
+nnoremap <up> <c-y>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
 cnoremap <expr> <f3> expand('%:p:h') . '/'
@@ -111,4 +115,5 @@ cnoremap <expr> <f3> expand('%:p:h') . '/'
 au FileType c,cpp :set dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
 au FileType tex :set dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
 au FileType tex :source $HOME/.vim/vim.d/runcommand/latex-suiterc.vim
-au fileType plaintex :set filetype=tex
+au FileType plaintex :set filetype=tex
+au filetype coq :set dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
