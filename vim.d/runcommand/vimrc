@@ -21,7 +21,7 @@ set hidden
 syntax enable
 
 """"""""""""""""""""""""""""""
-"plugin settings
+"   plugin settings
 """"""""""""""""""""""""""""""
 
 if has('vim_starting')
@@ -41,6 +41,7 @@ let g:surround_{char2nr(':')} = ":\r:"
 au FileType tex     :let g:surround_{char2nr('s')} = "\$ \r \$"
 au FileType c,cpp   :let g:surround_{char2nr('*')} = "/* \r */"
 au FileType hs      :let g:surround_{char2nr('*')} = "{- \r -}"
+au FileType coq     :let g:surround_{char2nr('*')} = "(* \r *)"
 au FileType vim     :let g:surround_{char2nr('p')} = "%(\r)"
 
 NeoBundle 'rbtnn/puyo.vim'
@@ -94,26 +95,43 @@ NeoBundle 'vim-jp/vital.vim'
 
 NeoBundle 'jcf/vim-latex'
 
+filetype plugin indent on
+
 
 call neobundle#end()
-
-filetype plugin indent on
 NeoBundleCheck
 
+
 """"""""""""""""""""""""""""""
+"   my tool settings
+""""""""""""""""""""""""""""""
+
+if has('vim_starting')
+    set runtimepath+=$HOME/.vim/vim.d/tool/completion/
+endif
+
+
+au FileType c,cpp :set dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
+au FileType plaintex :set filetype=tex
+au FileType tex :set dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
+au FileType tex :source $HOME/.vim/vim.d/runcommand/latex-suiterc.vim
+au BufEnter *.v :set filetype=coq
+au FileType coq :set dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
+
+
+
+""""""""""""""""""""""""""""""
+"   mapping
 """"""""""""""""""""""""""""""
 
 nnoremap <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Sex $HOME/.vim/vim.d<cr>
-nnoremap <f4> :Project ./.vimprojects<cr>
 nnoremap <down> <c-e>
 nnoremap <up> <c-y>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
+inoremap <c-l> <c-x><c-u>
 cnoremap <expr> <f3> expand('%:p:h') . '/'
+inoremap <expr> <f3> expand('%:p:h') . '/'
 
-au FileType c,cpp :set dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
-au FileType tex :set dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
-au FileType tex :source $HOME/.vim/vim.d/runcommand/latex-suiterc.vim
-au FileType plaintex :set filetype=tex
-au filetype coq :set dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
+

@@ -1,6 +1,37 @@
+
+Arith
+Omega
+
+omega
+ring
+field
+fourier
+
+simpl
+hnf
+compute
+cbv
+lazy
+vm_compute
+
+ring_simplify
+field_simplify
+
+
+
+Open
+Close
+Scope
+Require
+Import
+Section
+End
+
 Definition
 Example
 Inductive
+Fixpoint
+end
 
 Proposition
 Theorem
@@ -17,22 +48,43 @@ nat
 False
 
 forall
-exsists
+exists
+induction
+f_equal
 
+List
 list
 nil
 cons
 app
+rev
+app_nil_r
+app_assoc
+rev_app_distr
 
 
 ex
 fun
+
 not
 or
 or_intror
 or_introl
 and
 conj
+
+reflexivity
+symmetry
+transitivity
+
+contradiction
+
+
+match
+with
+rewrite
+app_assoc
+
 
 
 
@@ -41,9 +93,13 @@ Qed
 Print
 intro
 intros
+generalize
 apply
+exact
+assumption
 auto
 tauto
+constructor
 case
 destruct
 right
@@ -51,6 +107,4 @@ left
 split
 info
 unfold
-
-
 

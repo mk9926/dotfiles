@@ -22,6 +22,7 @@ usepackage
 
 newtxtext
 amsmath
+amsfont
 mathrsfs
 rsfso
 mathptmx
@@ -91,6 +92,7 @@ hrulefill
 dotfill
 fbox
 framebox
+verbatiminput
 
 
 
