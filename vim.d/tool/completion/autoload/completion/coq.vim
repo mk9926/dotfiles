@@ -13,7 +13,7 @@ let s:symbol_list = [
             \    },
             \    {
             \        'word' : '/\',
-            \        'info' : 'Induction and (A B : Prop) : Prop := conj : A -> B -> and A B',
+            \        'info' : 'Inductive and (A B : Prop) : Prop := conj : A -> B -> and A B',
             \        'name' : 'and'
             \    },
             \    {
