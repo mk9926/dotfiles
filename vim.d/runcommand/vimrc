@@ -40,7 +40,7 @@ let g:surround_{char2nr('d')} = "\"\r\""
 let g:surround_{char2nr(':')} = ":\r:"
 au FileType tex     :let g:surround_{char2nr('s')} = "\$ \r \$"
 au FileType c,cpp   :let g:surround_{char2nr('*')} = "/* \r */"
-au FileType hs      :let g:surround_{char2nr('*')} = "{- \r -}"
+au FileType haskell :let g:surround_{char2nr('*')} = "{- \r -}"
 au FileType coq     :let g:surround_{char2nr('*')} = "(* \r *)"
 au FileType vim     :let g:surround_{char2nr('p')} = "%(\r)"
 
@@ -66,6 +66,18 @@ NeoBundle 'vim-jp/cpp-vim'
 NeoBundle 'vimplugin/project.vim'
 
 NeoBundle 'Shougo/unite.vim'
+nnoremap <leader>ufl :Unite file<cr>
+nnoremap <leader>ufr :Unite file_rec<cr>
+nnoremap <leader>uo :Unite output:
+nnoremap <leader>ubf :Unite buffer<cr>
+nnoremap <leader>ubt :Unite buffer_tab<cr>
+nnoremap <leader>ut :Unite tab<cr>
+nnoremap <leader>us :Unite source<cr>
+nnoremap <leader>ureg :Unite register<cr>
+nnoremap <leader>ubm :Unite bookmark<cr>
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>uhy :Unite history/yank<cr>
+
 
 NeoBundle 'vim-scripts/haskell.vim'
 
@@ -98,6 +110,8 @@ NeoBundle 'vim-jp/vital.vim'
 
 NeoBundle 'jcf/vim-latex'
 
+NeoBundle 'vim-scripts/dbext.vim'
+
 filetype plugin indent on
 
 
@@ -120,6 +134,9 @@ au FileType tex :set dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
 au FileType tex :source $HOME/.vim/vim.d/runcommand/latex-suiterc.vim
 au BufEnter *.v :set filetype=coq
 au FileType coq :set dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
+au FileType coq,haskell :set iskeyword+='
+au BufLeave :set iskeyword-='
+au FileType haskell :set dictionary=$HOME/.vim/vim.d/tool/dict/haskell.dict
 
 
 
@@ -133,7 +150,6 @@ nnoremap <down> <c-e>
 nnoremap <up> <c-y>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
-inoremap <c-l> <c-x><c-u>
 cnoremap <expr> <f3> expand('%:p:h') . '/'
 inoremap <expr> <f3> expand('%:p:h') . '/'
 

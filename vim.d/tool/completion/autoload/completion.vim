@@ -1,6 +1,7 @@
 
 let s:Func_list = {
-            \    'coq' : 'completion#coq#Keyword_Completion'
+            \       'coq' : 'completion#coq#Keyword_Completion',
+            \       'haskell' : 'completion#haskell#Keyword_Completion'
             \}
 
 function! completion#set(type)
