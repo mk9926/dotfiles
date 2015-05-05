@@ -2,5 +2,7 @@
 set hintchars=asdfwerxcv
 set encoding=UTF-8
 set focuscontent
-map <F1> :set encoding=UTF-8<cr>
-map <F2> :source ~/.vimperatorrc<cr>
+map <f1> :set encoding=UTF-8<cr>
+map <f2> :source ~/.vimperatorrc<cr>
+map <f3> :bmarks 
+
