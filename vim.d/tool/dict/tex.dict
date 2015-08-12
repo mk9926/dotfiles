@@ -23,6 +23,7 @@ usepackage
 newtxtext
 amsmath
 amsfont
+amscd
 mathrsfs
 rsfso
 mathptmx
@@ -264,3 +265,7 @@ psi
 Omega
 omega
 
+bibliographystyle
+jplain
+bibliography
+cite

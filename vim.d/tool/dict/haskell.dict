@@ -1,4 +1,7 @@
 
+Functor
+Applicative
+Monad
 True
 False
 not

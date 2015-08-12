@@ -17,6 +17,7 @@ set ruler
 set showmode
 set title
 set hidden
+set foldmethod=marker
 
 syntax enable
 
@@ -38,11 +39,14 @@ let g:surround_{char2nr('[')} = "\\[\r\\]"
 let g:surround_{char2nr('q')} = "\'\r\'"
 let g:surround_{char2nr('d')} = "\"\r\""
 let g:surround_{char2nr(':')} = ":\r:"
+let g:surround_{char2nr('f')} = "{{{\r}}}"
 au FileType tex     :let g:surround_{char2nr('s')} = "\$ \r \$"
+au FileType tex     :let g:surround_{char2nr(';')} = "\\; \r \\;"
 au FileType c,cpp   :let g:surround_{char2nr('*')} = "/* \r */"
 au FileType haskell :let g:surround_{char2nr('*')} = "{- \r -}"
 au FileType coq     :let g:surround_{char2nr('*')} = "(* \r *)"
 au FileType vim     :let g:surround_{char2nr('p')} = "%(\r)"
+au FileType make    :let g:surround_{char2nr('o')} = "\$(\r)"
 
 NeoBundle 'rbtnn/puyo.vim'
 
@@ -55,9 +59,9 @@ NeoBundle 'Shougo/vimproc', {
             \       }
             \   }
 
-NeoBundle 'Yggdroot/indentLine'
-let g:indentLine_color_term=239
-let g:indentLine_char='┊'
+"NeoBundle 'Yggdroot/indentLine'
+"let g:indentLine_color_term=239
+"let g:indentLine_char='┊'
 
 NeoBundle 'Shougo/vimshell.vim'
 
@@ -69,18 +73,16 @@ NeoBundle 'Shougo/unite.vim'
 nnoremap [unite] <nop>
 nmap <leader>u [unite]
 nnoremap [unite]    :Unite 
-nnoremap [unite]fl  :Unite file<cr>
-nnoremap [unite]fr  :Unite file_rec<cr>
+nnoremap [unite]f  :Unite file<cr>
 nnoremap [unite]o   :Unite output:
 nnoremap [unite]bf  :Unite buffer<cr>
-nnoremap [unite]bt  :Unite buffer_tab<cr>
 nnoremap [unite]t   :Unite tab<cr>
 nnoremap [unite]s   :Unite source<cr>
-nnoremap [unite]reg :Unite register<cr>
-nnoremap [unite]bm  :Unite bookmark<cr>
-nnoremap [unite]d   :Unite directory<cr>
+nnoremap [unite]r :Unite register<cr>
+nnoremap [unite]bm  :Unite bookmark:
 let g:unite_source_history_yank_enable = 1
-nnoremap <leader>uhy :Unite history/yank<cr>
+nnoremap [unite]hy  :Unite history/yank<cr>
+nnoremap [unite]hu  :Unite history/unite<cr>
 
 
 NeoBundle 'vim-scripts/haskell.vim'
@@ -116,6 +118,16 @@ NeoBundle 'jcf/vim-latex'
 
 NeoBundle 'vim-scripts/dbext.vim'
 
+NeoBundle 'Shougo/vimfiler'
+let g:vimfiler_enable_auto_cd = 1
+nnoremap [vimfiler] <nop>
+nmap <leader>f [vimfiler]
+nnoremap [vimfiler]f :VimFiler<cr>
+nnoremap [vimfiler]b :VimFilerBufferDir<cr>
+
+NeoBundle 'gilligan/vim-lldb'
+
+
 filetype plugin indent on
 
 
@@ -128,8 +140,10 @@ NeoBundleCheck
 """"""""""""""""""""""""""""""
 
 if has('vim_starting')
-    set runtimepath+=$HOME/.vim/vim.d/tool/completion/
+    set runtimepath+=$HOME/.vim/vim.d/tool/myplugins/completion/
+    set runtimepath+=$HOME/.vim/vim.d/tool/myplugins/scripts/
 endif
+
 
 
 au FileType c,cpp :set dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
@@ -141,6 +155,7 @@ au FileType coq :set dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
 au FileType coq,haskell :set iskeyword+='
 au BufLeave :set iskeyword-='
 au FileType haskell :set dictionary=$HOME/.vim/vim.d/tool/dict/haskell.dict
+au FileType gp :set dictionary=/Users/masa/.vim/vim.d/tool/dict/gnuplot.dict
 
 
 
