@@ -12,10 +12,10 @@ set directory=$HOME/tmp,/var/tmp,/tmp
 
 set autoindent
 set showmatch
-set nu
+set relativenumber
 set ruler
 set showmode
-set title
+set notitle
 set hidden
 set foldmethod=marker
 
@@ -36,28 +36,44 @@ NeoBundle 'surround.vim'
 let g:surround_{char2nr('(')} = "\\(\r\\)"
 let g:surround_{char2nr('{')} = "\\{\r\\}"
 let g:surround_{char2nr('[')} = "\\[\r\\]"
-let g:surround_{char2nr('q')} = "\'\r\'"
+let g:surround_{char2nr('q')} = "'\r'"
 let g:surround_{char2nr('d')} = "\"\r\""
 let g:surround_{char2nr(':')} = ":\r:"
 let g:surround_{char2nr('f')} = "{{{\r}}}"
-au FileType tex     :let g:surround_{char2nr('s')} = "\$ \r \$"
-au FileType tex     :let g:surround_{char2nr(';')} = "\\; \r \\;"
-au FileType c,cpp   :let g:surround_{char2nr('*')} = "/* \r */"
-au FileType haskell :let g:surround_{char2nr('*')} = "{- \r -}"
-au FileType coq     :let g:surround_{char2nr('*')} = "(* \r *)"
-au FileType vim     :let g:surround_{char2nr('p')} = "%(\r)"
-au FileType make    :let g:surround_{char2nr('o')} = "\$(\r)"
+au FileType tex     :let b:surround_{char2nr('s')} = "$ \r $"
+au FileType tex     :let b:surround_{char2nr(';')} = "\\; \r \\;"
+au FileType tex     :let b:surround_{char2nr('R')} = "\\[ \r \\]"
+au FileType tex     :let b:surround_{char2nr('[')} = "\\left[ \r \\right]"
+au FileType tex     :let b:surround_{char2nr('(')} = "\\left( \r \\right)"
+au FileType tex     :let b:surround_{char2nr('{')} = "\\left\\{ \r \\right\\}"
+au FileType tex     :let b:surround_{char2nr('<')} = "\\left< \r \\right>"
+au FileType tex     :let b:surround_{char2nr('|')} = "\\left| \r \\right|"
+au FileType c,cpp   :let b:surround_{char2nr('*')} = "/* \r */"
+au FileType haskell :let b:surround_{char2nr('*')} = "{- \r -}"
+au FileType coq     :let b:surround_{char2nr('*')} = "(* \r *)"
+au FileType vim     :let b:surround_{char2nr('p')} = "%(\r)"
+au FileType make    :let b:surround_{char2nr('o')} = "$(\r)"
 
 NeoBundle 'rbtnn/puyo.vim'
+"   old version
+"NeoBundle 'Shougo/vimproc', {
+"            \   'build' : {
+"            \       'windows' : 'echo "Sorry, cannot update vimproc binary in windows"',
+"            \       'cygwin' : 'make -f make_cygwin.mak',
+"            \       'mac' : 'make -f make_mac.mak',
+"            \       'unix' : 'make -f make_unix.mak',
+"            \       }
+"            \   }
 
-NeoBundle 'Shougo/vimproc', {
-            \   'build' : {
-            \       'windows' : 'echo "Sorry, cannot update vimproc binary in windows"',
-            \       'cygwin' : 'make -f make_cygwin.mak',
-            \       'mac' : 'make -f make_mac.mak',
-            \       'unix' : 'make -f make_unix.mak',
-            \       }
-            \   }
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 
 "NeoBundle 'Yggdroot/indentLine'
 "let g:indentLine_color_term=239
@@ -68,17 +84,18 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'vim-jp/cpp-vim'
 
 NeoBundle 'vimplugin/project.vim'
+let g:proj_flags = 'giLmstv'
 
 NeoBundle 'Shougo/unite.vim'
 nnoremap [unite] <nop>
 nmap <leader>u [unite]
 nnoremap [unite]    :Unite 
-nnoremap [unite]f  :Unite file<cr>
+nnoremap [unite]f   :Unite file<cr>
 nnoremap [unite]o   :Unite output:
 nnoremap [unite]bf  :Unite buffer<cr>
 nnoremap [unite]t   :Unite tab<cr>
 nnoremap [unite]s   :Unite source<cr>
-nnoremap [unite]r :Unite register<cr>
+nnoremap [unite]r   :Unite register<cr>
 nnoremap [unite]bm  :Unite bookmark:
 let g:unite_source_history_yank_enable = 1
 nnoremap [unite]hy  :Unite history/yank<cr>
@@ -142,20 +159,20 @@ NeoBundleCheck
 if has('vim_starting')
     set runtimepath+=$HOME/.vim/vim.d/tool/myplugins/completion/
     set runtimepath+=$HOME/.vim/vim.d/tool/myplugins/scripts/
+    "set runtimepath+=$HOME/tool/Vimscript/mcproject.vim/
 endif
 
 
 
-au FileType c,cpp :set dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
-au FileType plaintex :set filetype=tex
-au FileType tex :set dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
-au FileType tex :source $HOME/.vim/vim.d/runcommand/latex-suiterc.vim
-au BufEnter *.v :set filetype=coq
-au FileType coq :set dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
-au FileType coq,haskell :set iskeyword+='
-au BufLeave :set iskeyword-='
-au FileType haskell :set dictionary=$HOME/.vim/vim.d/tool/dict/haskell.dict
-au FileType gp :set dictionary=/Users/masa/.vim/vim.d/tool/dict/gnuplot.dict
+au FileType c,cpp       :setl dictionary=$HOME/.vim/vim.d/tool/dict/cpp.dict
+au FileType plaintex    :setl filetype=tex
+au FileType tex         :setl dictionary=$HOME/.vim/vim.d/tool/dict/tex.dict
+au FileType tex         :source $HOME/.vim/vim.d/runcommand/latex-suiterc.vim
+au BufEnter *.v         :setl filetype=coq
+au FileType coq         :setl dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
+au FileType coq,haskell :setl iskeyword+='
+au FileType haskell     :setl dictionary=$HOME/.vim/vim.d/tool/dict/haskell.dict
+au FileType gp          :setl dictionary=/Users/masa/.vim/vim.d/tool/dict/gnuplot.dict
 
 
 
@@ -163,13 +180,18 @@ au FileType gp :set dictionary=/Users/masa/.vim/vim.d/tool/dict/gnuplot.dict
 "   mapping
 """"""""""""""""""""""""""""""
 
-nnoremap <esc><esc> :nohlsearch<cr>
+nnoremap <silent> <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Sex $HOME/.vim/vim.d<cr>
 nnoremap <down> <c-e>
 nnoremap <up> <c-y>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
+nnoremap <f3> :let @+ = expand('%:p:h')<cr>
 cnoremap <expr> <f3> expand('%:p:h') . '/'
 inoremap <expr> <f3> expand('%:p:h') . '/'
+cnoremap <expr> <f4> getcwd() . '/'
+inoremap <expr> <f4> getcwd() . '/'
+"lnoremap <expr> <f3> expand('%:p:h') . '/'
+"lnoremap <expr> <f4> getcwd() . '/'
 
 

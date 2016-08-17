@@ -1,5 +1,6 @@
 
 AC
+DeclareMathOperator
 Delta
 Gamma
 Huge
@@ -58,6 +59,7 @@ delta
 description
 diamond
 displaymath
+displaystyle
 div
 document
 documentclass
@@ -65,6 +67,7 @@ doteq
 dotfill
 dvipdfmx
 empty
+emptyset
 end
 enumerate
 epsilon
@@ -112,6 +115,7 @@ le
 left
 leftarrow
 leftrightarrow
+let
 leq
 ll
 lnot
@@ -147,6 +151,7 @@ omega
 ominus
 oplus
 overline
+overset
 pagestyle
 paragraph
 parallel
@@ -161,6 +166,7 @@ propto
 psi
 quotation
 quote
+relax
 renewcommand
 report
 rho
@@ -208,6 +214,7 @@ triangleright
 tt
 txfonts
 underline
+underset
 upsilon
 usepackage
 varepsilon
@@ -226,3 +233,8 @@ wedge
 wr
 xi
 zeta
+
+xymatrix
+xybox
+ar
+textit
