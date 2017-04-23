@@ -1,4 +1,6 @@
 
+Regex
+Posix
 AppendMode
 Applicative
 Bool
@@ -46,6 +48,7 @@ Show
 StdGen
 String
 System
+Text
 True
 Word8
 WriteMode
