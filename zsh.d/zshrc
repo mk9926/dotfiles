@@ -64,3 +64,7 @@ function start_editor() {
     zle reset-prompt
 }
 zle -N start_editor
+
+#ocaml
+eval `opam config env`
+
