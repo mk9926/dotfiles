@@ -2,6 +2,11 @@
 export EDITOR=vim
 export LANG=ja_JP.UTF-8
 
+#plugin managed by zplug
+export ZPLUG_HOME=~/.zplug/
+source $ZPLUG_HOME/zplug/init.zsh
+
+
 bindkey -v
 
 setopt auto_cd
@@ -28,18 +33,17 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 #keybind
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
-bindkey -a "q" push-line
+bindkey '^P' history-beginning-search-backward-end
+bindkey '^N' history-beginning-search-forward-end
+bindkey -M vicmd 'q' push-line
 bindkey '' cdup
-bindkey '\@' start_editor
+bindkey -M vicmd '\@' start_editor
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^B' backward-char
 
 #alias
-alias lc="ls --color"
 alias la="ls -a"
 alias llh="ls -lh"
-alias hist="history"
-alias -g V="2>&1 | vim - -R"
 
 #historys
 HISTSIZE=20000
@@ -66,5 +70,4 @@ function start_editor() {
 zle -N start_editor
 
 #ocaml
-eval `opam config env`
-
+. /Users/masa/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

@@ -1,4 +1,8 @@
 
+LANGUAGE
+ExistentialQuantification
+
+fromRational
 Regex
 Posix
 AppendMode
