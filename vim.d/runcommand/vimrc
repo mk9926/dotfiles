@@ -1,38 +1,33 @@
-set encoding=utf-8
-set expandtab tabstop=2 shiftwidth=2
-set history=200
-
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
 
 set nocompatible
-set directory=$HOME/tmp,/var/tmp,/tmp
 
-set smartindent
-set showmatch
-set relativenumber
-set ruler
-set showmode
-set notitle
-set hidden
-set foldmethod=marker
 
-syntax enable
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = expand('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+let s:dein_toml = expand('~/dotfiles/vim.d/runcommand/dein.toml')
 
-""""""""""""""""""""""""""""""
-"   plugin settings
-""""""""""""""""""""""""""""""
+execute 'set runtimepath+=' . s:dein_repo_dir
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#begin(expand('~/.vim/bundle/'))
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(s:dein_toml, {'lazy': 0})
+  call dein#end()
+  call dein#save_state()
 endif
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+if dein#check_install()
+  call dein#install()
+endif
 
-NeoBundle 'surround.vim'
+filetype plugin indent on
+syntax enable
+
+" deoplete.nvim
+inoremap <f1> <C-o>:call deoplete#toggle()<cr>
+au FileType tex   :call deoplete#disable()
+
+" surround.vim
+"
 let g:surround_{char2nr('(')} = "\\(\r\\)"
 let g:surround_{char2nr('{')} = "\\{\r\\}"
 let g:surround_{char2nr('[')} = "\\[\r\\]"
@@ -59,57 +54,29 @@ au FileType ocaml     :let b:surround_{char2nr('m')} = "begin match \r with\nend
 au FileType vim       :let b:surround_{char2nr('p')} = "%(\r)"
 au FileType make      :let b:surround_{char2nr('o')} = "$(\r)"
 au FileType markdown  :let b:surround_{char2nr('*')} = "<!-- \r -->"
+au FileType fsharp    :let b:surround_{char2nr('*')} = "(* \r *)"
+au FileType fsharp    :let b:surround_{char2nr('[')} = "[|\r|]"
+au FileType satysfi   :let b:surround_{char2nr('s')} = "${ \r }"
+au FileType satysfi   :let b:surround_{char2nr('<')} = "'< \r >"
+au FileType satysfi   :let b:surround_{char2nr('e')} = "\\eqn(\r);%"
 
-"NeoBundle 'rbtnn/puyo.vim'
-
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\   'windows' : 'tools\\update-dll-mingw',
-\   'cygwin' : 'make -f make_cygwin.mak',
-\   'mac' : 'make',
-\   'linux' : 'make',
-\   'unix' : 'gmake',
-\  },
-\ }
-
-"NeoBundle 'Yggdroot/indentLine'
-"let g:indentLine_color_term=239
-"let g:indentLine_char='┊'
-
-NeoBundle 'Shougo/vimshell.vim'
-
-NeoBundle 'vim-jp/cpp-vim'
-
-NeoBundle 'vimplugin/project.vim'
-let g:proj_flags = 'giLmstv'
-
-NeoBundle 'Shougo/unite.vim'
-nnoremap [unite] <nop>
-nmap <leader>u [unite]
-nnoremap [unite]    :Unite 
-nnoremap [unite]f   :Unite file<cr>
-nnoremap [unite]o   :Unite output:
-nnoremap [unite]bf  :Unite buffer<cr>
-nnoremap [unite]t   :Unite tab<cr>
-nnoremap [unite]s   :Unite source<cr>
-nnoremap [unite]r   :Unite register<cr>
-nnoremap [unite]bm  :Unite bookmark:
-"let g:unite_source_history_yank_enable = 1
-
-NeoBundle 'Shougo/neoyank.vim'
-nnoremap [unite]hy  :Unite history/yank<cr>
-nnoremap [unite]hu  :Unite history/unite<cr>
+"" unite.vim
+""
+"nnoremap [unite] <nop>
+"nmap <leader>u [unite]
+"nnoremap [unite]    :Unite 
+"nnoremap [unite]f   :Unite file<cr>
+"nnoremap [unite]o   :Unite output:
+"nnoremap [unite]bf  :Unite buffer<cr>
+"nnoremap [unite]t   :Unite tab<cr>
+"nnoremap [unite]s   :Unite source<cr>
+"nnoremap [unite]r   :Unite register<cr>
+"nnoremap [unite]bm  :Unite bookmark:
 
 
-NeoBundle 'vim-scripts/haskell.vim'
 
-NeoBundle 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
 
-NeoBundle 'tpope/vim-unimpaired'
-
-NeoBundle 'thinca/vim-quickrun'
+"vim-quickrun
 let g:quickrun_config = {
       \ '_' : {
       \   'outputter/buffer/split' : ':botright',
@@ -124,44 +91,78 @@ let g:quickrun_config = {
       \ },
       \ 'ocaml' : {
       \   'cmdopt' : '-I `camlp5 -where`'
+      \ },
+      \ 'fsharp' : {
+      \   'command' : 'fsharpi --readline-',
+      \   'tempfile' : '%{tempname()}.fsx',
+      \   'runner' : 'concurrent_process',
+      \   'runner/concurrent_process/load' : '#load "%S";;',
+      \   'runner/concurrent_process/prompt' : '> ',
       \ }
       \ }
 
-NeoBundle 'jvoorhis/coq.vim'
+"project.vim
+let g:proj_flags = 'giLmstv'
 
-"NeoBundle 'eagletmt/coqtop-vim'
-NeoBundle 'mskm9926/coqtop-vim'
+""neoyank.vim
+"nnoremap [unite]hy  :Unite history/yank<cr>
+"nnoremap [unite]hu  :Unite history/unite<cr>
 
-"NeoBundle 'vim-scripts/CoqIDE'
+"synatastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
 
-"NeoBundle 'let-def/vimbufsync'
-"NeoBundle 'the-lambda-church/coquille'
-"au FileType coq call coquille#FNMapping()
+""vimfiler
+"let g:vimfiler_enable_auto_cd = 1
+"nnoremap [vimfiler] <nop>
+"nmap <leader>f [vimfiler]
+"nnoremap [vimfiler]f :VimFiler<cr>
+"nnoremap [vimfiler]b :VimFilerBufferDir<cr>
 
-NeoBundle 'vim-jp/vital.vim'
+"vim-fsharp
+let g:syntastic_fsharp_checkers=['syntax']
+let g:syntastic_only_check_errors_on_write = 1
+let g:fsharpbinding_debug = 1
+let g:fsharp_interactive_bin = '/usr/local/bin/fsharpi'
+let g:fsharp_completion_helptext = 1
+let g:fsharp_helptext_comments = 1
+let g:fsharp_map_prefix = '\m'
+let g:fsharp_map_gotodecl = 'g'
+let g:fsharp_map_gobackfromdecl = 'b'
+let g:fsharp_map_fsiinput = 'i'
 
-NeoBundle 'jcf/vim-latex'
-
-NeoBundle 'vim-scripts/dbext.vim'
-
-NeoBundle 'Shougo/vimfiler'
-let g:vimfiler_enable_auto_cd = 1
-nnoremap [vimfiler] <nop>
-nmap <leader>f [vimfiler]
-nnoremap [vimfiler]f :VimFiler<cr>
-nnoremap [vimfiler]b :VimFilerBufferDir<cr>
-
-NeoBundle 'itchyny/vim-haskell-indent'
-
-NeoBundle 'gilligan/vim-lldb'
-
-NeoBundle 'FStarLang/VimFStar'
-
-filetype plugin indent on
+"Language-Client-neovim
 
 
-call neobundle#end()
-NeoBundleCheck
+set encoding=utf-8
+set expandtab tabstop=2 shiftwidth=2
+set history=200
+
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+set directory=$HOME/tmp,/var/tmp,/tmp
+
+set autoindent
+set showmatch
+set relativenumber
+set ruler
+set showmode
+set notitle
+set hidden
+set foldmethod=marker
+set isfname-==
+
+
+
+"
+"filetype plugin indent on
+"
+"
+"call neobundle#end()
+"NeoBundleCheck
 
 
 """"""""""""""""""""""""""""""
@@ -185,13 +186,17 @@ au FileType tex         :setl iskeyword+=-
 au FileType tex         :setl iskeyword+=_
 au BufEnter *.v         :setl filetype=coq
 au FileType coq         :setl iskeyword+='
-au FileType coq         :setl dictionary=$HOME/.vim/vim.d/tool/dict/coq.dict
 au FileType ocaml       :setl iskeyword+='
-au FileType ocaml       :setl dictionary=$HOME/.vim/vim.d/tool/dict/ocaml.dict
 au FileType haskell     :setl iskeyword+='
-au FileType haskell     :setl dictionary=$HOME/.vim/vim.d/tool/dict/haskell.dict
-au FileType gp          :setl dictionary=/Users/masa/.vim/vim.d/tool/dict/gnuplot.dict
-au FileType awk         :setl dictionary=/Users/masa/dotfiles/vim.d/tool/dict/awk.dict
+au FileType coq         :setl dictionary=$HOME/dotfiles/vim.d/tool/dict/coq.dict
+au FileType ocaml       :setl dictionary=$HOME/dotfiles/vim.d/tool/dict/ocaml.dict
+au FileType haskell     :setl dictionary=$HOME/dotfiles/vim.d/tool/dict/haskell.dict
+au FileType gp          :setl dictionary=$HOME/dotfiles/vim.d/tool/dict/gnuplot.dict
+au FileType awk         :setl dictionary=$HOME/dotfiles/vim.d/tool/dict/awk.dict
+au FileType fsharp      :setl dictionary=$HOME/dotfiles/vim.d/tool/dict/f.dict
+au FileType fstar       :setl dictionary=
+au FileType satysfi     :setl dictionary=$HOME/dotfiles/vim.d/tool/dict/satysfi.dict
+
 
 
 """"""""""""""""""""""""""""""
@@ -200,14 +205,10 @@ au FileType awk         :setl dictionary=/Users/masa/dotfiles/vim.d/tool/dict/aw
 
 nnoremap <silent> <esc><esc> :nohlsearch<cr>
 nnoremap <f2> :Sex $HOME/.vim/vim.d<cr>
-"nnoremap <up> <c-y>
-"nnoremap <down> <c-e>
 inoremap <c-f> <right>
 inoremap <c-b> <left>
 nnoremap <f3> :let @+ = expand('%:p:h')<cr>
 cnoremap <expr> <f3> expand('%:p:h') . '/'
 inoremap <expr> <f3> expand('%:p:h') . '/'
 cnoremap <expr> <f4> getcwd() . '/'
-inoremap <expr> <f4> getcwd() . '/'
-
 

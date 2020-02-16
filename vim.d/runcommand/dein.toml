@@ -1,0 +1,185 @@
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'callmekohei/deoplete-fsharp'
+build = 'bash install.bash'
+hook_add = '''
+  call deoplete#custom#option({
+    \ 'auto_complete_delay' : 0,
+    \ 'ignore_case' : v:true,
+    \ })
+'''
+
+[[plugins]]
+repo = 'callmekohei/tigaDebugger'
+
+[[plugins]]
+repo = 'vim-scripts/surround.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+
+[[plugins]]
+repo = 'vim-jp/cpp-vim'
+
+[[plugins]]
+repo = 'vimplugin/project.vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+  nnoremap [denite] <Nop>
+  nmap <leader>u [denite]
+  nnoremap [denite] :Denite
+
+  au FileType denite call s:denite_setting()
+  au FileType denite-filter call s:denite_filter_setting()
+
+  function! s:denite_setting() abort
+    nnoremap <silent><buffer><expr> <cr> denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
+    nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> q denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <space> denite#do_map('toggle_select')
+  endfunction
+
+  function! s:denite_filter_setting() abort
+    inoremap <silent><buffer><expr> <bs> <plug>(denite_filter_backspace)
+    inoremap <silent><buffer><expr> <c-o> <plug>(denite_filter_quit)
+  endfunction
+'''
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
+[[plugins]]
+repo = 'vim-scripts/haskell.vim'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+
+[[plugins]]
+repo = 'tpope/vim-unimpaired'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'jvoorhis/coq.vim'
+
+[[plugins]]
+repo = 'mskm9926/coqtop-vim'
+
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+
+[[plugins]]
+repo = 'jcf/vim-latex'
+
+[[plugins]]
+repo = 'vim-scripts/dbext.vim'
+
+[[plugins]]
+repo = 'Shougo/vimfiler'
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = '''
+  call defx#custom#column('icon', {
+      \ 'directory_icon': 'd> ',
+      \ 'opened_icon': 'dV ',
+      \ 'root_icon': ' ',
+      \ })
+
+  call defx#custom#option('_', 'drives', [
+      \ expand('~'), expand('~/dotfiles'), expand('~/tips')
+      \ ])
+
+	call defx#custom#option('_', {
+      \ 'columns': 'mark:indent:icon:filename:type:size:time',
+      \ })
+
+  nnoremap [defx] <nop>
+  nmap \f [defx]
+  nnoremap [defx]f :<c-u>Defx -auto-cd<cr>
+
+  au FileType defx call s:defx_setting()
+
+  function! s:defx_setting() abort
+    nnoremap <silent><buffer><expr> <f3> defx#do_action('cd', expand('%:p:h') . '/')
+    nnoremap <silent><buffer><expr> <cr> defx#do_action('open')
+    nnoremap <silent><buffer><expr> l defx#do_action('open')
+    nnoremap <silent><buffer><expr> s defx#do_action('open', 'split')
+    nnoremap <silent><buffer><expr> v defx#do_action('open', 'vsplit')
+    nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> m defx#do_action('move')
+    nnoremap <silent><buffer><expr> <space> defx#do_action('toggle_select')
+    nnoremap <silent><buffer><expr> r defx#do_action('rename')
+    nnoremap <silent><buffer><expr> d defx#do_action('remove')
+    nnoremap <silent><buffer><expr> x defx#do_action('execute_system')
+    nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> q defx#do_action('quit')
+    nnoremap <silent><buffer><expr> c defx#do_action('copy')
+    nnoremap <silent><buffer><expr> o defx#do_action('open_or_close_tree')
+    nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
+    nnoremap <silent><buffer><expr> N defx#do_action('new_file')
+    nnoremap <silent><buffer><expr> <c-l> defx#do_action('redraw')
+    nnoremap <silent><buffer><expr> SE defx#do_action('toggle_sort', 'extension')
+    nnoremap <silent><buffer><expr> SN defx#do_action('toggle_sort', 'filename')
+    nnoremap <silent><buffer><expr> SS defx#do_action('toggle_sort', 'size')
+    nnoremap <silent><buffer><expr> ST defx#do_action('toggle_sort', 'time')
+  endfunction
+
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
+
+[[plugins]]
+repo = 'gilligan/vim-lldb'
+
+[[plugins]]
+repo = 'FStarLang/VimFStar'
+
+[[plugins]]
+repo = 'fsharp/vim-fsharp'
+description = 'F# support for vim'
+lazy = 1
+filetypes = 'fsharp'
+build_commands = ['curl', 'make', 'mozroots', 'touch', 'unzip']
+  [plugin.build]
+  unix = 'make fsautocomplete'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+
+[[plugins]]
+repo = 'qnighy/satysfi.vim'
+

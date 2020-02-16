@@ -1,8 +1,10 @@
 
 let s:Func_list = {
-            \       'coq' : 'completion#coq#Keyword_Completion',
-            \       'haskell' : 'completion#haskell#Keyword_Completion'
-            \}
+      \  'coq' : 'completion#coq#Keyword_Completion',
+      \  'haskell' : 'completion#haskell#Keyword_Completion',
+      \  'fsharp' : 'completion#f#Keyword_Completion',
+      \  'fstar' : 'completion#f#Keyword_Completion',
+      \}
 
 function! completion#set(type)
     if has_key(s:Func_list, a:type)
