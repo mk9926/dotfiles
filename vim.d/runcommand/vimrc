@@ -24,7 +24,8 @@ syntax enable
 
 " deoplete.nvim
 inoremap <f1> <C-o>:call deoplete#toggle()<cr>
-au FileType tex   :call deoplete#disable()
+au FileType tex     :call deoplete#disable()
+au FileType satysfi :call deoplete#disable()
 
 " surround.vim
 "
@@ -72,8 +73,6 @@ au FileType satysfi   :let b:surround_{char2nr('e')} = "\\eqn(\r);%"
 "nnoremap [unite]s   :Unite source<cr>
 "nnoremap [unite]r   :Unite register<cr>
 "nnoremap [unite]bm  :Unite bookmark:
-
-
 
 
 "vim-quickrun

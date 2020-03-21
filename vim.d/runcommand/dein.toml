@@ -63,6 +63,7 @@ hook_add = '''
     nnoremap <silent><buffer><expr> <cr> denite#do_map('do_action')
     nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
     nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> a denite#do_map('do_action', 'add')
     nnoremap <silent><buffer><expr> q denite#do_map('quit')
     nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
     nnoremap <silent><buffer><expr> <space> denite#do_map('toggle_select')
@@ -73,6 +74,9 @@ hook_add = '''
     inoremap <silent><buffer><expr> <c-o> <plug>(denite_filter_quit)
   endfunction
 '''
+
+[[plugins]]
+repo = 'kmnk/denite-dirmark'
 
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
@@ -127,17 +131,19 @@ hook_add = '''
   nnoremap [defx] <nop>
   nmap \f [defx]
   nnoremap [defx]f :<c-u>Defx -auto-cd<cr>
+  nnoremap [defx]b :<c-u>Defx `expand('%:p:h')` -search=`expand('%:p')` -auto-cd<cr>
 
   au FileType defx call s:defx_setting()
 
   function! s:defx_setting() abort
-    nnoremap <silent><buffer><expr> <f3> defx#do_action('cd', expand('%:p:h') . '/')
+    nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
     nnoremap <silent><buffer><expr> <cr> defx#do_action('open')
     nnoremap <silent><buffer><expr> l defx#do_action('open')
     nnoremap <silent><buffer><expr> s defx#do_action('open', 'split')
     nnoremap <silent><buffer><expr> v defx#do_action('open', 'vsplit')
     nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
     nnoremap <silent><buffer><expr> m defx#do_action('move')
+    nnoremap <silent><buffer><expr> p defx#do_action('paste')
     nnoremap <silent><buffer><expr> <space> defx#do_action('toggle_select')
     nnoremap <silent><buffer><expr> r defx#do_action('rename')
     nnoremap <silent><buffer><expr> d defx#do_action('remove')
